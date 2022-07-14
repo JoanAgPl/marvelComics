@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+    .fichaP:hover{
+        background-color: green;
+    }
+    </style>
+    <title>Examen modulo 1</title>
+</head>
+<body class = "bg-page bg-dark">
+    <header>
+        <div id="marveLogo" class="rounded mx-auto d-block">
+            <img style=width:30% src="img/logo.png" alt="Logo de Marvel" class="rounded mx-auto d-block">
+        </div>
+    </header>
+    <main>
+        <div class="col xs-12 sm-12 col-md-6 col-lg-6 text-light rounded mx-auto d-block">
+            <p>Esta página muestra 6 fichas con algunos cómics de Marvel. Es importante que el contenido se adapte a diferentes dispositivos. Prueba a modificar el tamaño de la ventana y podrás comprobar como debe visualizarse.
+
+            Cuando hagas click sobre la imagen o el título de cada tarjeta podrás acceder a una página que muestre la información de ese cómic en concreto.
+            </p>
+        </div>
+        <div class="container">
+            <div id="blocks" class="row rounded mx-auto">
+                code here
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="col xs-12 sm-12 col-md-6 col-lg-6 text-light rounded mx-auto d-block">
+            <p>Página creada por Joan Aguayo Planell
+            </p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">  
+    </script>
+    <script>
+        blockDetails=[
+                {name:"ficha0",img:"https://i.annihil.us/u/prod/marvel/i/mg/4/70/61f018d6d9799/clean.jpg",alt:"Savage Spider Man (2022) #2 CoverImg",title:"Savage Spider Man (2022) #2",pub:"March 13, 2022",wri:"Kelly, Sandoval",pen:"?",cav:"?",text:"?"},
+
+                {name:"ficha1",img:"https://i.annihil.us/u/prod/marvel/i/mg/3/80/61f0187e644b5/clean.jpg",alt:"Devil’s Reign: Villains for Hire #3 CoverImg",title:"Devil’s Reign: Villains for Hire #3",pub:"?",wri:"Chapman, Garcia",pen:"?",cav:"?",text:"?"},
+
+                {name:"ficha2",img:"https://i.annihil.us/u/prod/marvel/i/mg/4/00/6227c9d73f446/clean.jpg",alt:"Captain America/Iron Man #5 CoverImg",title:"Captain America/Iron Man #5",pub:"?",wri:"Landy, Unzueta",pen:"?",cav:"?",text:"?"},
+
+                {name:"ficha3",img:"https://i.annihil.us/u/prod/marvel/i/mg/6/b0/6227c9d74b42f/clean.jpg",alt:"Devil's Reign: X-Men #3 CoverImg",title:"Devil's Reign: X-Men #3",pub:"?",wri:"Duggan, Noto",pen:"?",cav:"?",text:"?"},
+
+                {name:"ficha4",img:"https://i.annihil.us/u/prod/marvel/i/mg/3/00/61f018f20168b/clean.jpg",alt:"Star Wars: Doctor Aphra #19 CoverImg",title:"Star Wars: Doctor Aphra #19",pub:"?",wri:"Wong, Jung",pen:"?",cav:"?",text:"?"},
+                
+                {name:"ficha5",img:"https://i.annihil.us/u/prod/marvel/i/mg/5/80/61f0190507aba/clean.jpg",alt:"Darth Vader #21 CoverImg",title:"Darth Vader #21",pub:"?",wri:"Pak, Ienco",pen:"?",cav:"?",text:"?"}
+        ]
+
+
+        var logoClick = document.getElementById('marveLogo')
+        logoClick.addEventListener('click',onClickMarvel)  
+        function loadMiniFicha(n){      
+            let temp = `<div id="${blockDetails[n].name}" class ="col xs-12 sm-12 col-md-4 col-lg-2">
+                <div class ="p-90% border  bg-light">
+                    <img style=width:100% src="${blockDetails[n].img}" alt="${blockDetails[n].alt}" class="rounded mx-auto d-block">
+                    <h2>${blockDetails[n].title}</h2>
+                    <p>${blockDetails[n].wri}</p>
+                </div>
+            </div>`
+            return temp
+        }
+
+
+
+
+        function loadFichas(){
+            let temp
+            for(let i=0;i<6;i++){
+                temp = `ficha${i}`    
+                fichaClick = document.getElementById(temp)
+                fichaClick.addEventListener('click',function(){onClickFicha(blockDetails[i])})
+            }
+        }
+        function onClickFicha(blockDerails) {
+            let fichasHTML=`
+                <div class ="col xs-5 sm-5 col-md-5 col-lg-5">
+                    <img style=width:100% src="${blockDerails.img}" alt="${blockDerails.alt}" class="rounded mx-auto d-block">
+                </div>
+                <div class ="col xs-5 sm-5 col-md-5 col-lg-5">
+                    <h2 class = "text-white">${blockDerails.title}</h2>
+                    <h2 class = "text-white">Published:</h2>
+                    <h3 class = "text-white">${blockDerails.pub}</h3>
+                    <h3 class = "text-white">Writer:</h3>
+                    <h3 class = "text-white">${blockDerails.wri}</h3>
+                    <h3 class = "text-white">Penciled:</h3>
+                    <h3 class = "text-white">${blockDerails.pen} </h3>
+                    <h3 class = "text-white">cover Artist:</h3>
+                    <h3 class = "text-white">${blockDerails.cav}</h3>
+                    <h3 class = "text-white">${blockDerails.text}</h3>
+                </div>` ;
+                document.querySelector("#blocks").innerHTML=fichasHTML; 
+        }
+
+        
+        function onClickMarvel() {
+            let fichasHTML=""
+            for(let i=0;i<6;i++){
+                fichasHTML+=loadMiniFicha(i)
+            }
+            document.querySelector("#blocks").innerHTML=fichasHTML; 
+            loadFichas()
+        }
+        onClickMarvel()
+    </script>
+</body>
+</html>
